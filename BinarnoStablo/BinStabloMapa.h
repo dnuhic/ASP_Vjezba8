@@ -56,27 +56,18 @@ public:
         v.push_back(par->element.vrijednost);
         reverseInOrder(par->leftChild, a, b, v);
     }
-    void preOrderKreiranje(Cvor<TipKljuca, TipVrijednosti> *par, TipKljuca *nizKjuceva, TipVrijednosti *nizVrijednosti, int *i, Cvor<TipKljuca, TipVrijednosti> *roditelj, int vel, bool desni) {\
-        std::cout << "epic";
+    void preOrderKreiranje(Cvor<TipKljuca, TipVrijednosti> *&par, TipKljuca *nizKjuceva, TipVrijednosti *nizVrijednosti, int *i, Cvor<TipKljuca, TipVrijednosti> *roditelj, int vel, bool desni) {
         if(*i == vel) return;
-        bool nastavi = true;
         if(nizKjuceva[*i] != 0) {
             par = new Cvor<TipKljuca, TipVrijednosti>{{nizKjuceva[*i], nizVrijednosti[*i]}, nullptr, nullptr, roditelj};
             brEl++;
-            if(*i != 0)
-                if(desni) roditelj->rightChild = par;
-                else roditelj->leftChild = par;
+            (*i)++;
         } else {
             (*i)++;
-            nastavi = false;
+            return;
         }
-        if(nastavi)
-            preOrderKreiranje(par->leftChild, nizKjuceva, nizVrijednosti, i, par, vel, false);
-        else return;
-        if(nastavi)
-            preOrderKreiranje(par->rightChild, nizKjuceva, nizVrijednosti, i, par, vel, true);
-        else return;
-        //ne radi
+        preOrderKreiranje(par->leftChild, nizKjuceva, nizVrijednosti, i, par, vel, false);
+        preOrderKreiranje(par->rightChild, nizKjuceva, nizVrijednosti, i, par, vel, true);
     }
     std::vector<TipVrijednosti> od_do(const TipKljuca& a, const TipKljuca& b) {
         std::vector<TipVrijednosti> v;

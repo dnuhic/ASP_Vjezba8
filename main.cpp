@@ -5,7 +5,7 @@ int main() {
     int kljucevi[] = {6, 4, 3, 0, 0, 5, 0, 0, 0};
     int vrijednost[] = {6, 4, 3, 0, 0, 5, 0, 0, 0};
     BinStabloMapa<int, int> m(kljucevi, vrijednost, 9);
-    std::cout << m.vrh->element.kljuc;
+    std::cout << m.vrh->leftChild->rightChild->element.kljuc;
 //    m[1] = 1;
 //    m[3] = 3;
 //    m[2] = 2;
